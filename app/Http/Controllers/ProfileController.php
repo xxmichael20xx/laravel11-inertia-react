@@ -36,8 +36,9 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        $panel = getUserPanel($request);
 
-        return Redirect::route('profile.edit');
+        return Redirect::route($panel .'.edit');
     }
 
     /**

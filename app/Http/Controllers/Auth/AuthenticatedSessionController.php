@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended($this->getLoginRedirect());
     }
 
     /**
@@ -47,6 +48,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
+    }
+
+    /**
+     * Get the login redirect path based on user role
+     *
+     * @return string
+     */
+    protected function getLoginRedirect(): string
+    {
+        if (auth()->user()->hasRole(User::ROLE_SUPER_ADMIN)) {
+            $prefix = 'app';
+        }
+        
+        return route($prefix . '.dashboard', absolute: true);
     }
 }

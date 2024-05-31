@@ -1,0 +1,39 @@
+[
+    {
+        "role": "Super Admin",
+        "permissions": []
+    },
+    {
+        "role": "Admin",
+        "permissions": [
+            "can view users",
+            "can create user",
+            "can update user",
+            "can delete user",
+            "can restore user",
+            "can view projects",
+            "can create project",
+            "can update project",
+            "can delete project",
+            "can restore project",
+            "can view tasks",
+            "can create task",
+            "can update task",
+            "can delete task"
+        ]
+    },
+    {
+        "role": "User",
+        "permissions": [
+            "can view projects",
+            "can create project",
+            "can update project",
+            "can delete project",
+            "can restore project",
+            "can view tasks",
+            "can create task",
+            "can update task",
+            "can delete task"
+        ]
+    }
+]
