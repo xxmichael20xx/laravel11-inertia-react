@@ -7,7 +7,13 @@ import { Transition } from '@headlessui/react';
 import { FormEventHandler } from 'react';
 import { PageProps } from '@/types';
 
-export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }: { mustVerifyEmail: boolean, status?: string, className?: string }) {
+interface UpdateProfileInformationInterface {
+    readonly mustVerifyEmail: boolean,
+    readonly status?: string,
+    readonly className?: string
+}
+
+export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }: UpdateProfileInformationInterface) {
     const user = usePage<PageProps>().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
