@@ -33,8 +33,9 @@ if (! function_exists('getUserPanel')) {
         }
 
         $prefix = 'user';
-        $user = $request->user();
 
+        /** @var \App\Models\User $user */
+        $user = $request->user();
         if ($user->hasRole(User::ROLE_SUPER_ADMIN)) {
             $prefix = 'app';
         } elseif ($user->hasRole(User::ROLE_ADMIN)) {
