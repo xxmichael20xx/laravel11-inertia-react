@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Define super admin gate
         Gate::before(function ($user) {
+            /** @var User $user */
             return $user->hasRole(User::ROLE_SUPER_ADMIN) ? true : null;
         });
     }

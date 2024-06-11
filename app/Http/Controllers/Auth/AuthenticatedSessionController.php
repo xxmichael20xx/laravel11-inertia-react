@@ -58,7 +58,9 @@ class AuthenticatedSessionController extends Controller
      */
     protected function getLoginRedirect(): string
     {
-        if (auth()->user()->hasRole(User::ROLE_SUPER_ADMIN)) {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        if ($user->hasRole(User::ROLE_SUPER_ADMIN)) {
             $prefix = 'app';
         }
         
